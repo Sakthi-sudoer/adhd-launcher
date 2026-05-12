@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingTop="48dp"
         android:paddingBottom="12dp"
         android:gravity="center_vertical">
@@ -55,7 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:marginHorizontal="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_card"
         android:orientation="vertical"
@@ -88,7 +90,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/dateCard"
         android:layout_above="@id/bottomBar"
-        android:paddingHorizontal="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
         android:paddingBottom="8dp"
         android:clipToPadding="false" />
 
@@ -114,7 +117,8 @@
         android:background="@drawable/bg_bottom_bar"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <ImageButton
             android:id="@+id/btnAllApps"
