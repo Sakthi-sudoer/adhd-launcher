@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_primary">#7C3AED</color>
+    <color name="purple_light">#A78BFA</color>
+    <color name="purple_dark">#4C1D95</color>
+    <color name="purple_bg">#1E1033</color>
+    <color name="purple_card">#2D1B69</color>
+    <color name="purple_surface">#3B2080</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
+    <color name="accent_pink">#EC4899</color>
+    <color name="accent_teal">#14B8A6</color>
+</resources>
