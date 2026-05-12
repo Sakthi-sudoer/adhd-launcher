@@ -9,7 +9,7 @@
         android:label="ADHD Life OS"
         android:theme="@style/AppTheme">
 
-        <!-- Main Home Screen Activity -->
+        <!-- Main Home Screen / ADHD OS Activity -->
         <activity
             android:name=".HomeActivity"
             android:exported="true"
@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
 
-        <!-- App Selection / Settings Activity -->
+        <!-- Hidden app picker (accessible via long-press settings) -->
         <activity
             android:name=".AppPickerActivity"
             android:exported="false"
-            android:label="Choose Apps"
+            android:label="App Settings"
             android:theme="@style/AppTheme" />
 
     </application>

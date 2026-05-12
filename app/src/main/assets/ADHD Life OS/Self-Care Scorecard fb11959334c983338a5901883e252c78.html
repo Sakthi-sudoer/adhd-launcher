@@ -1,0 +1,745 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Self-Care Scorecard</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fb119593-34c9-8333-8a59-01883e252c78" class="page serif"><header><img class="page-cover-image" src="Self-Care%20Scorecard/1000045534.jpg" style="object-position:center 21.330000000000005%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Self-Care%20Scorecard/ChatGPT_Image_Aug_10_2025_06_32_17_PM.png"/></div><h1 class="page-title" dir="auto">Self-Care Scorecard</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="13919593-34c9-82e1-b5a0-8114103f18da"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/daisy_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="edc19593-34c9-8276-9c37-81f580e711fc" class=""><strong>Your wellbeing is not optional - it&#x27;s essential!</strong></p></div><div style="display:contents" dir="auto"><p id="f4319593-34c9-820b-bd42-812ba7ff1579" class=""><em>Track self-care like the vital life skill it is. Every point earned is an investment in your future self.</em></p></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="02019593-34c9-83ca-943e-01311d2c1d6b" class="block-color-purple"><strong>Your Wellness Dashboard</strong></h3></div><div style="display:contents" dir="auto"><hr id="af419593-34c9-82a2-9b12-01ef342cf497"/></div><div style="display:contents" dir="ltr"><div id="d2119593-34c9-822c-bfcf-01cbc79072b7" class="collection-content"><h4 class="collection-title">Self-Care Scorecard</h4><div class="collection-content-wrapper"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/circle-dot_gray.svg" style="width:14px;height:14px;display:block"/></span>Care Item</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>Type</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>Completion Date</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/briefcase_gray.svg" style="width:14px;height:14px;display:block"/></span>Points Earned Today</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/checkmark-line_gray.svg" style="width:14px;height:14px;display:block"/></span>Completed Today</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar-day_gray.svg" style="width:14px;height:14px;display:block"/></span>Days Since Completion</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/star-half_gray.svg" style="width:14px;height:14px;display:block"/></span>Care Status</th></tr></thead><tbody><tr id="f8419593-34c9-8353-af1a-0182789682f6"><td class="cell-title"><a href="Self-Care%20Scorecard/Self-Care%20Scorecard/Read%20before%20bed%20f841959334c98353af1a0182789682f6.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/>Read before bed</a></td><td class="cell-L|h;"><span class="selected-value select-value-color-blue">🧘 Mental</span></td><td class="cell-WSak"><time>August 2, 2025</time></td><td class="cell-le_S">0</td><td class="cell-ipeS"><div class="checkbox checkbox-off"></div></td><td class="cell-xutD">283</td><td class="cell-Jhr=">Restart 🔄</td></tr><tr id="99519593-34c9-82e8-bbda-0140ac73b5aa"><td class="cell-title"><a href="Self-Care%20Scorecard/Self-Care%20Scorecard/Morning%20yoga%20%F0%9F%A7%98%E2%80%8D%E2%99%80%EF%B8%8F%209951959334c982e8bbda0140ac73b5aa.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/>Morning yoga 🧘‍♀️</a></td><td class="cell-L|h;"><span class="selected-value select-value-color-green">💪 Physical</span></td><td class="cell-WSak"><time>August 2, 2025</time></td><td class="cell-le_S">0</td><td class="cell-ipeS"><div class="checkbox checkbox-off"></div></td><td class="cell-xutD">283</td><td class="cell-Jhr=">Restart 🔄</td></tr><tr id="d5219593-34c9-820f-9e72-0108ac3a9d0b"><td class="cell-title"><a href="Self-Care%20Scorecard/Self-Care%20Scorecard/Called%20a%20friend%20d521959334c9820f9e720108ac3a9d0b.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/>Called a friend</a></td><td class="cell-L|h;"><span class="selected-value select-value-color-yellow">🌍 Social</span></td><td class="cell-WSak"><time>August 10, 2025</time></td><td class="cell-le_S">0</td><td class="cell-ipeS"><div class="checkbox checkbox-off"></div></td><td class="cell-xutD">275</td><td class="cell-Jhr=">Restart 🔄</td></tr><tr id="85519593-34c9-8362-aa7d-013e5b22d96f"><td class="cell-title"><a href="Self-Care%20Scorecard/Self-Care%20Scorecard/Healthy%20lunch%208551959334c98362aa7d013e5b22d96f.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/>Healthy lunch</a></td><td class="cell-L|h;"><span class="selected-value select-value-color-green">💪 Physical</span></td><td class="cell-WSak"><time>April 6, 2026</time></td><td class="cell-le_S">0</td><td class="cell-ipeS"><div class="checkbox checkbox-off"></div></td><td class="cell-xutD">36</td><td class="cell-Jhr=">Restart 🔄</td></tr><tr id="22819593-34c9-82c5-a2ef-813e26da199d"><td class="cell-title"><a href="Self-Care%20Scorecard/Self-Care%20Scorecard/Evening%20Stroll%202281959334c982c5a2ef813e26da199d.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/>Evening Stroll</a></td><td class="cell-L|h;"><span class="selected-value select-value-color-blue">🧘 Mental</span></td><td class="cell-WSak"><time>April 5, 2026</time></td><td class="cell-le_S">0</td><td class="cell-ipeS"><div class="checkbox checkbox-off"></div></td><td class="cell-xutD">37</td><td class="cell-Jhr=">Restart 🔄</td></tr></tbody></table></div><br/><br/></div></div><div style="display:contents" dir="auto"><hr id="bc719593-34c9-82ae-bfe1-0175fb2cb711"/></div><div style="display:contents" dir="auto"><h3 id="56f19593-34c9-832b-8657-81c18359ee21" class="block-color-purple"><strong>Self-Care Categories &amp; Points (If you prefer direct manual update)</strong></h3></div><div style="display:contents" dir="auto"><div id="2dc19593-34c9-8329-a5cd-8144c8995879" class="column-list"><div style="display:contents" dir="auto"><div id="b1919593-34c9-8218-b0bc-01c895b15ea1" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="f5419593-34c9-8305-ba2d-01054bb29e28"><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="10b19593-34c9-83bb-bd17-8199f43bb789" class=""><strong>Physical</strong> (30 pts)</h3></div><div style="display:contents" dir="auto"><ul id="9b619593-34c9-8278-bed6-0158f28ac0fc" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Exercise</strong> (10)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="d7d19593-34c9-8306-b016-813d09a321fc" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Healthy meal</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="85a19593-34c9-8290-b1d7-81f0914e33f1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Hydration</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="7aa19593-34c9-8329-b02a-01e30f4a22e7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Stretching</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="d5219593-34c9-8330-8685-81e6c5bab5d6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Good sleep</strong> (5)<br/><br/>📊 <strong>Today: 15/30</strong></span><div class="indented"></div></li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="fb319593-34c9-831b-806b-01242949444e" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="8fe19593-34c9-8265-a06b-0154fc358ddd"><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="c2319593-34c9-8225-a727-819ad091db07" class=""><strong>Mental</strong> (25 pts)</h3></div><div style="display:contents" dir="auto"><ul id="01619593-34c9-8383-b01f-01f735d8d549" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Meditation</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="0ec19593-34c9-82d2-82d4-0192f490fcfc" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Journaling</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="edd19593-34c9-82c1-a5d4-0115e5f6a1f6" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Break time</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="34d19593-34c9-83eb-9876-815e7305e779" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Set boundaries</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="1ab19593-34c9-8380-8a3d-8149274befe8" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Reading</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="22d19593-34c9-8261-b43a-016dcc8cf9a6" class="">📊 <strong>Today: 10/25</strong></p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="dad19593-34c9-835b-8de3-0104075a8d41" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="03019593-34c9-82fb-967d-01ee8ba4021a"><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="2f319593-34c9-82bc-85aa-0113ff974d8b" class=""><strong>Emotional</strong> (25 pts)</h3></div><div style="display:contents" dir="auto"><ul id="33919593-34c9-8289-980a-8124be61c668" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Connect w friend</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="fa319593-34c9-82cf-9d35-011d91a73acc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Fun activity</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="f7319593-34c9-82cc-b5f9-819d10787463" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Self-compassion</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="59219593-34c9-83d4-bf57-8157466a1928" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Gratitude</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="5b119593-34c9-824f-ac28-8142bcde2db3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Creative time</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="78019593-34c9-83b8-b3da-8160dc48faa3" class="">📊<strong>Today: 5/25</strong></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="6dc19593-34c9-824a-8d0e-814bca626b22" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="42b19593-34c9-83a6-9afe-01f4b84ecdaa" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="81d19593-34c9-8388-b832-01107cb59fe2"><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="60519593-34c9-83ff-9e88-811065d56e80" class=""><strong>Environment</strong> (25 pts)</h3></div><div style="display:contents" dir="auto"><ul id="7b819593-34c9-8259-a26a-8150131c2e45" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Tidy space</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b1219593-34c9-82ae-aec9-81bf7b3c52c7" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>Nature time</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="1db19593-34c9-8317-8021-81b4f6abadf2" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Comfy clothes</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="ffe19593-34c9-821c-9763-016b74edd620" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Screen break</strong> (5)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="de919593-34c9-83c9-9f48-817d983c6c0c" class="block-color-teal to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Ambience reset (5)</strong></span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="25619593-34c9-824b-aad7-015191aa8cb5" class="">📊<strong>Today: 10/20</strong></p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="54d19593-34c9-83e0-aa06-01c4598c1455"/></div><div style="display:contents" dir="auto"><h3 id="f4d19593-34c9-825d-919d-81d4bcc58156" class="block-color-purple"><strong>Quick Self-Care Wins</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="a7b19593-34c9-8270-98ee-01c95ce8e7f0"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/flash_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="5e419593-34c9-8306-bbaf-010c801c66e2" class="">5-Minute Care Bursts</h3></div><div style="display:contents" dir="auto"><p id="fa919593-34c9-8392-910c-819849b2d543" class="">🌸 <strong>Body:</strong> Stretch, dance, hydrate, breathe deeply</p></div><div style="display:contents" dir="auto"><p id="93a19593-34c9-8201-b0cd-01e93cb31546" class="">🌸 <strong>Mind:</strong> Doodle, brain dump, close eyes, count breaths</p></div><div style="display:contents" dir="auto"><p id="bb319593-34c9-831d-86fc-017c2ff88c48" class="">🌸 <strong>Heart:</strong> Text a friend, hug someone/something, smile practice</p></div><div style="display:contents" dir="auto"><p id="b8119593-34c9-82d3-9309-015c6a2b1d7f" class="">🌸 <strong>Space:</strong> Clear desk, open window, light candle, play music</p></div><div style="display:contents" dir="auto"><p id="d9b19593-34c9-83ce-837d-810f901eef86" class=""><em>Small acts, big impact!</em></p></div></div></figure></div><div style="display:contents" dir="auto"><hr id="43a19593-34c9-8317-9b1d-010c4175771e"/></div><div style="display:contents" dir="auto"><h3 id="a9119593-34c9-82da-9a48-818b7ca56e60" class="block-color-purple"><strong>Your Self-Care Tracker</strong></h3></div><div style="display:contents" dir="auto"><hr id="cfa19593-34c9-82da-9ddf-013f015d889d"/></div><div style="display:contents" dir="auto"><h3 id="05119593-34c9-82e5-bf91-81431530c90a" class=""><mark class="highlight-purple"><strong>ADHD Self-Care Strategies</strong></mark></h3></div><div style="display:contents" dir="auto"><div id="96019593-34c9-827a-a20d-019a0da6cd6e" class="column-list"><div style="display:contents" dir="auto"><div id="ecc19593-34c9-825e-9f2a-0146096d6616" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="5cb19593-34c9-821d-8d44-01f721fc5cf8"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/swap-horizontally_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="b1919593-34c9-821f-995f-81d9257228db" class=""><strong>Make It Easy</strong></h3></div><div style="display:contents" dir="auto"><ul id="a9a19593-34c9-8373-96aa-81e6bac42f3c" class="bulleted-list"><li style="list-style-type:disc">Lower the bar</li></ul></div><div style="display:contents" dir="auto"><ul id="22f19593-34c9-8383-8e91-013a46f9af74" class="bulleted-list"><li style="list-style-type:disc">2-min versions</li></ul></div><div style="display:contents" dir="auto"><ul id="10419593-34c9-8241-96da-81e3891948dd" class="bulleted-list"><li style="list-style-type:disc">Stack with habits</li></ul></div><div style="display:contents" dir="auto"><ul id="d2919593-34c9-83c6-8b97-81b01004f490" class="bulleted-list"><li style="list-style-type:disc">Visual reminders</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="85019593-34c9-839c-8f73-815ed6917378" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="52a19593-34c9-82c5-b00c-01054e92ff6f"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/mushroom_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="c7e19593-34c9-822e-9983-01d6003bc167" class=""><strong>Make It Fun</strong></h3></div><div style="display:contents" dir="auto"><ul id="79419593-34c9-8271-bd68-01070748151b" class="bulleted-list"><li style="list-style-type:disc">Gamify with points</li></ul></div><div style="display:contents" dir="auto"><ul id="7de19593-34c9-822b-a765-01bb62f1ca38" class="bulleted-list"><li style="list-style-type:disc">Reward milestones</li></ul></div><div style="display:contents" dir="auto"><ul id="82119593-34c9-8258-967b-01cfe6f1fa4e" class="bulleted-list"><li style="list-style-type:disc">Share wins</li></ul></div><div style="display:contents" dir="auto"><ul id="7f319593-34c9-8361-a9a6-0106734aaa6a" class="bulleted-list"><li style="list-style-type:disc">Try new things</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="ffb19593-34c9-82f2-8a74-0118c83b5170" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="76119593-34c9-821b-9c7e-817e95a78a73"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/stars_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="abd19593-34c9-82f7-b089-8154755492a1" class=""><strong>Make It Stick</strong></h3></div><div style="display:contents" dir="auto"><ul id="cbf19593-34c9-8269-96b2-014320d8f0c2" class="bulleted-list"><li style="list-style-type:disc">Same time daily</li></ul></div><div style="display:contents" dir="auto"><ul id="a3019593-34c9-8389-9bf9-816c368f0eae" class="bulleted-list"><li style="list-style-type:disc">Phone reminders</li></ul></div><div style="display:contents" dir="auto"><ul id="b0d19593-34c9-8365-8df2-01628b50a523" class="bulleted-list"><li style="list-style-type:disc">Accountability buddy</li></ul></div><div style="display:contents" dir="auto"><ul id="a6a19593-34c9-8358-8b57-01196d7ae7fe" class="bulleted-list"><li style="list-style-type:disc">Track visually</li></ul></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="1f019593-34c9-83d2-b2a6-8166b8431d9b"/></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="1f619593-34c9-83c2-969c-019aa7d33307"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/heart-outline_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="51819593-34c9-8262-aab0-01aa2fd75c3f" class="">You Can&#x27;t Pour From an Empty Cup! </h3></div><div style="display:contents" dir="auto"><p id="89119593-34c9-826f-a8a0-0160a27d4748" class=""><em>Self-care isn&#x27;t selfish - it&#x27;s essential. Your ADHD brain needs extra care to function at its best. Every point you earn is proof that you&#x27;re worth investing in. Keep filling your cup!</em></p></div><div style="display:contents" dir="auto"><p id="1e719593-34c9-8305-af56-01fb4f137ca0" class=""><strong>You deserve all the care and kindness!</strong> ✨</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="8bb19593-34c9-835f-96f0-81a37f0f33e2" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

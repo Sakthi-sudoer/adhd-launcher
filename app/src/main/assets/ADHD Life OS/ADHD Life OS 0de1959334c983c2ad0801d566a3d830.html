@@ -1,0 +1,749 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>
+ADHD Life OS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0de19593-34c9-83c2-ad08-01d566a3d830" class="page serif"><header><img class="page-cover-image" src="ADHD%20Life%20OS/1000045526.jpg" style="object-position:center 55.99000000000001%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="ADHD%20Life%20OS/ChatGPT_Image_Aug_10_2025_06_31_51_PM.png"/></div><h1 class="page-title" dir="auto"><br/>ADHD Life OS</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="39f19593-34c9-8220-8b01-81ac122f63df"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/star-outline_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="de619593-34c9-8293-a204-81c3b8bb5875" class=""><strong>Welcome to Your Personal ADHD Command Center  - </strong>A dopamine-rich, visually stunning system designed specifically for neurodivergent minds. Every color, emoji, and layout choice is intentionally crafted to help your ADHD brain thrive.</p></div></div></figure></div><div style="display:contents" dir="auto"><div id="2d019593-34c9-8319-9f66-011a355b0ccc" class="column-list"><div style="display:contents" dir="auto"><div id="63019593-34c9-8266-8d06-810287ee6780" style="width:25%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="69719593-34c9-83bc-b2de-01b7bcf4e77a"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/bullseye_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="82019593-34c9-8260-a937-014521756240" class=""><strong>Quick Notes </strong></p></div><div style="display:contents" dir="auto"><ul id="73919593-34c9-8304-a3bb-01b5cb983dec" class="bulleted-list"><li style="list-style-type:disc">Email John</li></ul></div><div style="display:contents" dir="auto"><ul id="8f519593-34c9-830d-9e21-8112619a4b3b" class="bulleted-list"><li style="list-style-type:disc">Water Plants</li></ul></div><div style="display:contents" dir="auto"><ul id="94519593-34c9-830c-9529-0166421a9287" class="bulleted-list"><li style="list-style-type:disc">Salon Visit</li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="c6619593-34c9-82b7-9f7d-019054786d5a" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="d4f19593-34c9-83d5-a9f1-0173c3ecb2d1" style="width:25%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="d1619593-34c9-83ce-80c3-01a848428749"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/cupcake_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="01d19593-34c9-82a7-92a2-015b0ed8ae62" class=""><strong>Birthdays</strong></p></div><div style="display:contents" dir="auto"><ul id="9ad19593-34c9-82a8-81c7-812c9bbbf7d6" class="bulleted-list"><li style="list-style-type:disc">Mike 3 Oct</li></ul></div><div style="display:contents" dir="auto"><ul id="e1919593-34c9-83a3-98ee-017a5c295b5f" class="bulleted-list"><li style="list-style-type:disc">Amber 6 Nov</li></ul></div><div style="display:contents" dir="auto"><ul id="69319593-34c9-8299-889b-8123472faedd" class="bulleted-list"><li style="list-style-type:disc">Ani 29 Dec</li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="aa619593-34c9-83b2-bdcb-810b0ad497bd" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="51d19593-34c9-83b7-b092-811e5bf761b6" style="width:25%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="07219593-34c9-8353-a12c-815ae32c51af"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/rainbow_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="d1b19593-34c9-8276-8330-014d269169ec" class=""><strong>Grocery list</strong></p></div><div style="display:contents" dir="auto"><ul id="27619593-34c9-8260-a8f7-0111860dd971" class="bulleted-list"><li style="list-style-type:disc">Milk</li></ul></div><div style="display:contents" dir="auto"><ul id="5a919593-34c9-8211-a6fe-01e912a471a2" class="bulleted-list"><li style="list-style-type:disc">Bread</li></ul></div><div style="display:contents" dir="auto"><ul id="40419593-34c9-8264-90ee-01b89cef3550" class="bulleted-list"><li style="list-style-type:disc">Bin Bags</li></ul></div></div></figure></div><div style="display:contents" dir="auto"><p id="cc019593-34c9-8321-b549-0143c91440ab" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="04b19593-34c9-8318-9cc5-01dffbf29321" style="width:25%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="a8519593-34c9-82a8-93f1-811d1a9126d3"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/brain_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="47d19593-34c9-834e-9629-81e608a56e9c" class=""><strong>Mental Clarity </strong></p></div><div style="display:contents" dir="auto"><p id="ca619593-34c9-8235-90eb-01bc0e73e137" class="">Should reach airport by 6 PM, Book cab by 4 AM</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="b8e19593-34c9-828b-88f7-015aa473f461" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="03b19593-34c9-833e-92f1-81f8c3c783b3"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/stars_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="78f19593-34c9-82cc-9a75-81b530b6773d" class=""><mark class="highlight-purple"><strong>WHAT MAKES THIS DIFFERENT </strong></mark></p></div><div style="display:contents" dir="auto"><p id="c6919593-34c9-82fc-b184-0153f61e7f53" class=""><strong>Live Automation</strong> - Metrics update automatically and tables have quick add buttons (most templates are static)</p></div><div style="display:contents" dir="auto"><p id="41e19593-34c9-8260-92b2-01c3571d0740" class=""><strong>ADHD Science-Based</strong> - Every feature designed around neurodivergent research</p></div><div style="display:contents" dir="auto"><p id="44619593-34c9-835e-b983-01c64a08d41d" class=""><strong>Professional Design</strong> - Premium visual experience that motivates daily use</p></div><div style="display:contents" dir="auto"><p id="11919593-34c9-824e-b584-0189d0270c4a" class=""><strong>Complete Setup Guide</strong> - From zero to productivity hero in 15 minutes</p></div><div style="display:contents" dir="auto"><p id="f5b19593-34c9-83ff-aff9-018265af6887" class=""><strong>Proven System</strong> - Combines best practices from productivity &amp; ADHD experts</p></div></div></figure></div><div style="display:contents" dir="auto"><h4 id="17519593-34c9-828d-8e47-013002748b79" class="block-color-purple"><strong>Today&#x27;s Dashboard</strong></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="08219593-34c9-83e4-81e6-01be149d539f"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/flash_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="da419593-34c9-83a9-bb5d-015716a34767" class=""><strong>LIVE AUTOMATION ACTIVE!</strong> Your metrics update automatically as you use the system - no manual calculations needed! Just update the details directly above or using the buttons below 💪✨</p></div><div style="display:contents" dir="auto"><div id="39719593-34c9-837e-9944-8166e4763cf0" class="column-list"><div style="display:contents" dir="auto"><div id="da919593-34c9-8373-8b72-0177b9078d6e" style="width:50%" class="column"></div></div><div style="display:contents" dir="auto"><div id="0ae19593-34c9-8324-b1f7-01c880509412" style="width:50%" class="column"></div></div></div></div></div></figure></div><div style="display:contents" dir="ltr"><div id="b3819593-34c9-83a7-9138-81813fdab8df" class="collection-content"><h4 class="collection-title"> Key Insights </h4><div class="collection-content-wrapper"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>Metric Name</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/formula_gray.svg" style="width:14px;height:14px;display:block"/></span>Value</th></tr></thead><tbody><tr id="11d19593-34c9-82f2-96a4-810857a58cd7"><td class="cell-title"><a href="ADHD%20Life%20OS/Key%20Insights/%F0%9F%93%85%20Next%20Due%20Date%2011d1959334c982f296a4810857a58cd7.html">📅 Next Due Date</a></td><td class="cell-?R[Y">📅 Payment Due Dates: @August 7, 2025  @August 3, 2025 @August 4, 2025</td></tr><tr id="56a19593-34c9-8329-be35-01e14e866577"><td class="cell-title"><a href="ADHD%20Life%20OS/Key%20Insights/%F0%9F%93%8B%20Big%203%20Pending%2056a1959334c98329be3501e14e866577.html">📋 Big 3 Pending</a></td><td class="cell-?R[Y">⏳ Pending Tasks: ,📝 Plan weekend activities</td></tr><tr id="86319593-34c9-8250-91f1-01a3c63147b7"><td class="cell-title"><a href="ADHD%20Life%20OS/Key%20Insights/%F0%9F%8E%AF%20Big%203%20Completed%208631959334c9825091f101a3c63147b7.html">🎯 Big 3 Completed</a></td><td class="cell-?R[Y">✅ Tasks Completed: 0</td></tr><tr id="28719593-34c9-82ae-91f8-017973a269bb"><td class="cell-title"><a href="ADHD%20Life%20OS/Key%20Insights/%F0%9F%92%B8%20Unpaid%20Bills%202871959334c982ae91f8017973a269bb.html">💸 Unpaid Bills</a></td><td class="cell-?R[Y">💸 Bills Unpaid: 8</td></tr></tbody></table></div><br/><br/></div></div><div style="display:contents" dir="auto"><p id="a0519593-34c9-82d0-af4d-018eb96109bb" class=""><mark class="highlight-purple"><strong>NAVIGATION (Click on any page below to navigate)</strong></mark></p></div><div style="display:contents" dir="auto"><hr id="c8e19593-34c9-8331-9d90-016478b2a586"/></div><div style="display:contents" dir="auto"><div id="32d19593-34c9-8239-9002-01bdebd69f94" class="column-list"><div style="display:contents" dir="auto"><div id="08919593-34c9-8342-a584-81ee228899ab" style="width:33.33333333333333%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="c0319593-34c9-83a5-a794-01017ebbc4fc"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/daisy_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h4 id="4ef19593-34c9-82f4-85ab-81edfc555b0f" class="">Daily Focus</h4></div><div style="display:contents" dir="ltr"><figure id="8cf19593-34c9-830a-b3ad-8117bdb0df08" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Today&#x27;s%20Big%203%20Priority%20Tasks%208cf1959334c9830ab3ad8117bdb0df08.html"><img class="icon" src="ADHD%20Life%20OS/Today&#x27;s%20Big%203%20Priority%20Tasks/ChatGPT_Image_Aug_10_2025_05_56_26_PM.png"/>Today&#x27;s Big 3 Priority Tasks</a></figure></div><div style="display:contents" dir="ltr"><figure id="40019593-34c9-8280-8260-8152f015f032" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Distraction%20Tracker%204001959334c9828082608152f015f032.html"><img class="icon" src="ADHD%20Life%20OS/Distraction%20Tracker/ChatGPT_Image_Aug_10_2025_06_31_55_PM.png"/>Distraction Tracker</a></figure></div><div style="display:contents" dir="ltr"><figure id="e1b19593-34c9-83c6-b512-81f96851bcf2" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Expense%20Tracker%20e1b1959334c983c6b51281f96851bcf2.html"><img class="icon" src="ADHD%20Life%20OS/Expense%20Tracker/ChatGPT_Image_Aug_10_2025_06_32_51_PM.png"/>Expense Tracker</a></figure></div><div style="display:contents" dir="ltr"><figure id="92019593-34c9-8280-a6e7-81e0828a4b1c" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Brain%20Dump%20Capture%20System%209201959334c98280a6e781e0828a4b1c.html"><img class="icon" src="ADHD%20Life%20OS/Brain%20Dump%20Capture%20System/ChatGPT_Image_Aug_10_2025_06_32_00_PM.png"/>Brain Dump Capture System</a></figure></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="fc419593-34c9-8357-9aba-81e0d6e7796f" style="width:33.33333333333334%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="43619593-34c9-83f1-8b9b-8115b6d6f845"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/thought-alert_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h4 id="f8819593-34c9-8296-a3ae-01358f59b534" class="">  Track &amp; Reflect</h4></div><div style="display:contents" dir="ltr"><figure id="e6819593-34c9-8331-b34d-811ca24f1f0d" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Mood%20&amp;%20Energy%20Logger%20e681959334c98331b34d811ca24f1f0d.html"><img class="icon" src="ADHD%20Life%20OS/Mood%20&amp;%20Energy%20Logger/ChatGPT_Image_Aug_10_2025_06_32_22_PM.png"/>Mood &amp; Energy Logger</a></figure></div><div style="display:contents" dir="ltr"><figure id="87e19593-34c9-83a6-82bd-81f8bbee897e" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Calendar%20&amp;%20Upcoming%20Events%2087e1959334c983a682bd81f8bbee897e.html"><img class="icon" src="ADHD%20Life%20OS/Calendar%20&amp;%20Upcoming%20Events/ChatGPT_Image_Aug_10_2025_05_56_21_PM.png"/>Calendar &amp; Upcoming Events</a></figure></div><div style="display:contents" dir="ltr"><figure id="a4619593-34c9-830d-b2f1-01d20b76ddd0" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Focus%20Sessions%20(Pomodoro)%20a461959334c9830db2f101d20b76ddd0.html"><img class="icon" src="ADHD%20Life%20OS/Focus%20Sessions%20(Pomodoro)/ChatGPT_Image_Aug_10_2025_06_32_10_PM.png"/>Focus Sessions (Pomodoro)</a></figure></div><div style="display:contents" dir="ltr"><figure id="20a19593-34c9-83a5-ab15-014c2936e0ae" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Setup%20Guide%20&amp;%20Welcome%20Page%2020a1959334c983a5ab15014c2936e0ae.html"><img class="icon" src="ADHD%20Life%20OS/Setup%20Guide%20&amp;%20Welcome%20Page/ChatGPT_Image_Aug_10_2025_06_32_06_PM.png"/>Setup Guide &amp; Welcome Page</a></figure></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="cdc19593-34c9-830f-a333-01cc6f3d1d8a" style="width:33.33333333333333%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="68d19593-34c9-8382-993c-818cff5eada7"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/calendar-month_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h4 id="81819593-34c9-8305-bcd6-81f75488a138" class="">  Habits &amp; Routine</h4></div><div style="display:contents" dir="ltr"><figure id="ee919593-34c9-82af-8674-0192fadb3b1f" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Habit%20Tracker%20&amp;%20Streaks%20ee91959334c982af86740192fadb3b1f.html"><img class="icon" src="ADHD%20Life%20OS/Habit%20Tracker%20&amp;%20Streaks/ChatGPT_Image_Aug_10_2025_06_32_41_PM.png"/>Habit Tracker &amp; Streaks</a></figure></div><div style="display:contents" dir="ltr"><figure id="1e019593-34c9-8325-8888-01a5e04c3c0b" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Routine%20Checklist%20(AM%20PM)%201e01959334c98325888801a5e04c3c0b.html"><img class="icon" src="ADHD%20Life%20OS/Routine%20Checklist%20(AM%20PM)/ChatGPT_Image_Aug_10_2025_06_32_00_PM.png"/>Routine Checklist (AM/PM)</a></figure></div><div style="display:contents" dir="ltr"><figure id="fb119593-34c9-8333-8a59-01883e252c78" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Self-Care%20Scorecard%20fb11959334c983338a5901883e252c78.html"><img class="icon" src="ADHD%20Life%20OS/Self-Care%20Scorecard/ChatGPT_Image_Aug_10_2025_06_32_17_PM.png"/>Self-Care Scorecard</a></figure></div><div style="display:contents" dir="ltr"><figure id="85a19593-34c9-838f-a531-8186ae1d4d3e" class="block-color-purple_background link-to-page"><a href="ADHD%20Life%20OS/Wins%20&amp;%20Achievements%20Gallery%2085a1959334c9838fa5318186ae1d4d3e.html"><img class="icon" src="ADHD%20Life%20OS/Wins%20&amp;%20Achievements%20Gallery/ChatGPT_Image_Aug_10_2025_06_32_51_PM.png"/>Wins &amp; Achievements Gallery</a></figure></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><h4 id="07619593-34c9-82b2-beed-813ceda14893" class="block-color-default_background"><mark class="highlight-purple"><strong>Your ADHD-Optimized Daily Rhythm</strong></mark></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="70f19593-34c9-8319-8219-81bd06ab6c42"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/star-half_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="e4119593-34c9-8215-8957-01b6d1263993" class=""><strong>Transform scattered days into intentional wins! </strong></p></div><div style="display:contents" dir="auto"><p id="da319593-34c9-823d-b8a8-8190514f948b" class=""><em>These micro-routines are designed specifically for ADHD brains - short, dopamine-rich, and momentum-building. Pick what resonates, adapt what doesn&#x27;t.</em></p></div></div></figure></div><div style="display:contents" dir="auto"><div id="86e19593-34c9-8231-b93e-0175bc9d7ed7" class="column-list"><div style="display:contents" dir="auto"><div id="c9a19593-34c9-82b1-b41d-81de7b118b87" style="width:100%" class="column"><div style="display:contents" dir="auto"><h4 id="28019593-34c9-825d-8c90-01f2ed0f995c" class=""><mark class="highlight-purple"><strong>Morning Launch Sequence</strong></mark><mark class="highlight-purple"> (5-8 min)</mark></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="68a19593-34c9-8384-b50a-011dbaf18277"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/sun_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="a0f19593-34c9-8304-927e-0169544bed0a" class=""><strong>Start with intention, not overwhelm</strong></p></div><div style="display:contents" dir="auto"><p id="72819593-34c9-8308-8160-81ac0eb4dc6e" class=""><em>Quick wins that set the tone for focus</em></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="8d519593-34c9-8275-a95d-0142f72b27c9" class=""><strong>Priority Setting (2 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="32b19593-34c9-8260-81e7-0166218d4bcf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Open Today&#x27;s Big 3 and choose your winners</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="33919593-34c9-8281-9614-01a0602d2d84" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Quick brain dump if thoughts are racing</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="68a19593-34c9-83c4-bea9-819a9d306f48" class=""><strong>Day Preview (1 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="16e19593-34c9-8382-a743-015c7dd80fe3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Glance at calendar for surprises</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="fac19593-34c9-8296-bbf3-81c55334de39" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Note energy level and plan accordingly</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="e0619593-34c9-8213-8b1c-01dd2c32ac40" class=""><strong>Momentum Builder (2-5 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="5f919593-34c9-83bf-a4af-013f1c301844" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Complete AM routine checklist</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b5719593-34c9-82f1-bcd1-8185b5b24c8a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Hydrate + any morning meds</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="31119593-34c9-8287-a367-81c77a7cc551" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Set intention: &quot;Today I will...&quot;</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="5a519593-34c9-83be-9648-01cdaa20db7d"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/light-bulb_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="05319593-34c9-82b4-9b21-013c75c3665f" class=""><strong>ADHD Hack:</strong> Do this sequence BEFORE checking phone/email. Protect your morning clarity!</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="4c419593-34c9-8328-8c81-0136723f1d02" style="width:100%" class="column"><div style="display:contents" dir="auto"><h4 id="c3c19593-34c9-82d2-9061-0125aeab2f63" class=""><mark class="highlight-purple"><strong>Evening Wind-Down</strong></mark><mark class="highlight-purple"> (5-8 min)</mark></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="bc819593-34c9-8249-b925-81a451b161d6"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/partly-cloudy-night_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="d8f19593-34c9-826b-bd26-8187a497415b" class=""><strong>Reflect, celebrate, and reset</strong></p></div><div style="display:contents" dir="auto"><p id="c9119593-34c9-832f-84f0-818b044e77c0" class=""><em>End with wins, not regrets</em></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2cf19593-34c9-83a5-bf82-01c7bab229f1" class=""><strong>Victory Recognition (2 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="db919593-34c9-8318-8968-8144bba520e4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Log today&#x27;s wins (even tiny ones!)</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="5ec19593-34c9-83d2-9267-81185f110017" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Celebrate Big 3 progress</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="b4c19593-34c9-8244-b1a5-817dd7f5bda5" class=""><strong>Self-Care Check (2 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="b6119593-34c9-83d5-8df5-81bb60afcd8c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Update self-care scorecard</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="7cf19593-34c9-8242-85cc-81f847d7ce0a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Note mood and energy patterns</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><p id="81f19593-34c9-8230-81a8-0184d6b8256e" class=""><strong>Tomorrow Prep (3-4 min)</strong></p></div><div style="display:contents" dir="auto"><ul id="cc019593-34c9-83d0-94fb-01af7b017582" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Complete PM routine checklist</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b1519593-34c9-822a-a162-01feff5eefdb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Quick preview of tomorrow&#x27;s priorities</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="b4f19593-34c9-8274-ab0c-01b449f4d53c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Brain dump any lingering thoughts</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="91419593-34c9-82d2-82de-8161835f42f8"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/burst_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="7c719593-34c9-82e6-9c43-81a508b92f98" class=""><strong>ADHD Hack:</strong> Focus on progress over perfection. 60% completion = total win!</p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><h4 id="71c19593-34c9-82c0-a6f5-813f29b077f8" class="block-color-purple"><strong>Power-Through-The-Day Toolkit</strong></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="4b419593-34c9-8202-afa5-81a8aa17bde4"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/rocket_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="44b19593-34c9-8215-817f-0172edf6d3fe" class=""><strong>Stay locked in without burning out</strong></p></div><div style="display:contents" dir="auto"><p id="b4519593-34c9-83fc-b2a8-01118c17f11b" class=""><em>Quick strategies for when ADHD brain gets scattered</em></p></div></div></figure></div><div style="display:contents" dir="auto"><div id="6aa19593-34c9-8375-9fb9-015ca3ac4153" class="column-list"><div style="display:contents" dir="auto"><div id="da619593-34c9-8237-9ea6-81fda3306f15" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="f7719593-34c9-836c-b84e-01438ada8f0f"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/apple_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="80a19593-34c9-8324-b765-011eddbcbed4" class=""><strong>Focus Fire Mode</strong></p></div><div style="display:contents" dir="auto"><ul id="b0119593-34c9-838f-bf7a-0146fdba5dcf" class="bulleted-list"><li style="list-style-type:disc">Start 25-min Pomodoro</li></ul></div><div style="display:contents" dir="auto"><ul id="70c19593-34c9-83aa-8966-01084de48f3d" class="bulleted-list"><li style="list-style-type:disc">Phone room</li></ul></div><div style="display:contents" dir="auto"><ul id="37e19593-34c9-82c4-934a-01bf6a2eeb03" class="bulleted-list"><li style="list-style-type:disc">ONE task only</li></ul></div><div style="display:contents" dir="auto"><p id="89f19593-34c9-82cc-8748-01897ca9c921" class=""><em>Deep work magic</em></p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="cbd19593-34c9-8200-b99a-014e68024679" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="41d19593-34c9-82a7-90a5-0101ef853a8f"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/cellular_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="f9a19593-34c9-8301-92f5-01ef4ad9c424" class=""><strong>Distraction Radar</strong></p></div><div style="display:contents" dir="auto"><ul id="57f19593-34c9-83eb-b0b6-816d90eb29e6" class="bulleted-list"><li style="list-style-type:disc">Notice the pull</li></ul></div><div style="display:contents" dir="auto"><ul id="abc19593-34c9-8281-8a08-013675af9c4f" class="bulleted-list"><li style="list-style-type:disc">Log it quickly</li></ul></div><div style="display:contents" dir="auto"><ul id="8af19593-34c9-825a-8edf-814420aa262b" class="bulleted-list"><li style="list-style-type:disc">No judgment</li></ul></div><div style="display:contents" dir="auto"><ul id="7b219593-34c9-8226-a6c1-81dd6f49845e" class="bulleted-list"><li style="list-style-type:disc">Redirect gently</li></ul></div><div style="display:contents" dir="auto"><p id="10019593-34c9-8222-a298-01af6c1656cd" class=""><em>Awareness builds control</em></p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="82319593-34c9-838d-b427-81724e266746" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="6fa19593-34c9-8357-804b-817369a4b752"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/circle-dot_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="50419593-34c9-8217-9f06-014bcf0e918d" class=""><strong>Habit Momentum</strong></p></div><div style="display:contents" dir="auto"><ul id="06919593-34c9-8282-8024-81b06518e29f" class="bulleted-list"><li style="list-style-type:disc">Checkoff as you go</li></ul></div><div style="display:contents" dir="auto"><ul id="dc819593-34c9-83ba-aa74-817c7db2b430" class="bulleted-list"><li style="list-style-type:disc">Feel dopamine hit</li></ul></div><div style="display:contents" dir="auto"><ul id="cf719593-34c9-83c1-8d9f-813052b74fd5" class="bulleted-list"><li style="list-style-type:disc">Build that streak!</li></ul></div><div style="display:contents" dir="auto"><ul id="ebc19593-34c9-82ee-a878-8131893154dc" class="bulleted-list"><li style="list-style-type:disc">Stack habits </li></ul></div><div style="display:contents" dir="auto"><p id="54619593-34c9-83bb-ae07-814e4776d3bf" class=""><em>Small wins = big gains</em></p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="1c419593-34c9-834d-8f51-81e839522ee4" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="9fc19593-34c9-8255-853e-81a925afc258"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/sleet_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="1f819593-34c9-8363-8ecc-81567bc0759d" class=""><strong>Energy Check-In</strong></p></div><div style="display:contents" dir="auto"><ul id="39519593-34c9-82a0-a5fb-011d4c18a4e2" class="bulleted-list"><li style="list-style-type:disc">How am I feeling?</li></ul></div><div style="display:contents" dir="auto"><ul id="a5619593-34c9-8201-b1a5-819e1f6ad8ea" class="bulleted-list"><li style="list-style-type:disc">What do I need?</li></ul></div><div style="display:contents" dir="auto"><ul id="4a119593-34c9-8219-97cc-810d214a15e6" class="bulleted-list"><li style="list-style-type:disc">Quick mood log</li></ul></div><div style="display:contents" dir="auto"><ul id="c1419593-34c9-833c-9df1-01f9de7c159c" class="bulleted-list"><li style="list-style-type:disc">Adjust accordingly</li></ul></div><div style="display:contents" dir="auto"><p id="87b19593-34c9-83b7-bc4d-010fc8515278" class=""><em>Self-awareness </em></p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="05519593-34c9-82d7-be32-0198143b4f12"/></div><div style="display:contents" dir="auto"><h4 id="a4a19593-34c9-83eb-ab60-813b6200ece2" class="block-color-purple"><strong>Pro Tips for ADHD Success</strong></h4></div><div style="display:contents" dir="auto"><div id="53219593-34c9-836f-8ccd-81c5053b7339" class="column-list"><div style="display:contents" dir="auto"><div id="84219593-34c9-82a6-b2af-0112642ab531" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="43b19593-34c9-83a3-bf79-01682e1f1275"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/target_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="56419593-34c9-83e9-8bdd-81f8636d4218" class=""><strong>Start Small</strong></p></div><div style="display:contents" dir="auto"><p id="35419593-34c9-83cf-b0f8-0172cf5bb064" class="">Pick 2-3 features that excite you most. Master those before adding more.</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="d8519593-34c9-83d5-a8ac-8148216d3299" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="cf119593-34c9-830c-bb71-01408d03eeb6"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/fireworks_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="c6a19593-34c9-8371-909f-018e7e4fa7b9" class=""><strong>Celebrate Everything</strong></p></div><div style="display:contents" dir="auto"><p id="eb319593-34c9-83ea-a727-01bae365ae7d" class="">No win is too small. Progress over perfection!</p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><div id="d0f19593-34c9-8222-ac82-81312369877b" class="column-list"><div style="display:contents" dir="auto"><div id="f7819593-34c9-8301-958e-819c06d70d2d" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="5e719593-34c9-8235-a603-81c6f7250a1e"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/create_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="e9919593-34c9-83fe-ad10-01ef447c3150" class=""><strong>Make It Yours</strong></p></div><div style="display:contents" dir="auto"><p id="ae419593-34c9-82f7-8c1d-81a49520fbc2" class="">Customize colors, emojis, and workflows to match your brain.</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="ef919593-34c9-83a1-96d6-81aed418c8ff" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="callout" style="white-space:pre-wrap;display:flex" id="eaf19593-34c9-8356-8bb4-0144c40916f8"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/aquarius_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="bb119593-34c9-83e6-a645-819517f0bc45" class=""><strong>Be Flexible</strong></p></div><div style="display:contents" dir="auto"><p id="f4c19593-34c9-83a3-a201-8160d3591015" class="">Missed a day? Start fresh. Your dashboard adapts with you.</p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><h4 id="52319593-34c9-8329-9f8b-81b92bd7282b" class="block-color-default_background"><mark class="highlight-purple"><strong>Works Everywhere You Do</strong></mark></h4></div><div style="display:contents" dir="auto"><div id="a4819593-34c9-83f0-8c28-016955c87520" class="column-list"><div style="display:contents" dir="auto"><div id="3b219593-34c9-831a-9126-01a1d027a8b9" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="09d19593-34c9-827d-82fd-018278b4cb7a"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/phone_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="eae19593-34c9-837e-a504-812135062345" class=""><strong>Mobile Optimized</strong></p></div><div style="display:contents" dir="auto"><p id="e8b19593-34c9-82f6-a272-8111022ee93e" class="">Fully responsive design</p></div><div style="display:contents" dir="auto"><p id="a3d19593-34c9-8365-bd1f-0145f8367d4f" class="">Notion app compatible</p></div><div style="display:contents" dir="auto"><p id="f1419593-34c9-8275-979d-81519282cbf0" class="">Capture thoughts anywhere</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="18e19593-34c9-8211-883e-01b4e3e6e49d" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="5ad19593-34c9-8292-baba-01ec592d2d00"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/laptop_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="84819593-34c9-827d-984c-81216e58e550" class=""><strong>Desktop Power</strong></p></div><div style="display:contents" dir="auto"><p id="87a19593-34c9-83cb-884f-81aa0e7b5709" class="">Full dashboard experience</p></div><div style="display:contents" dir="auto"><p id="ad419593-34c9-82b2-8b53-01baba32e171" class="">Multiple column layouts</p></div><div style="display:contents" dir="auto"><p id="deb19593-34c9-83cb-b1f4-819bddf6b73e" class="">Keyboard shortcuts ready</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="5d019593-34c9-83bd-a1ee-0161a4377c8a" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="8cc19593-34c9-82d0-9541-8141066f0055"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/brain_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="7ca19593-34c9-83a0-a9b1-0143230188eb" class=""><strong>ADHD Accessible</strong></p></div><div style="display:contents" dir="auto"><p id="d4619593-34c9-823b-aeac-01084fa48f57" class="">High contrast colors</p></div><div style="display:contents" dir="auto"><p id="69d19593-34c9-83e3-bd65-01bea00f3feb" class="">Clear visual hierarchy</p></div><div style="display:contents" dir="auto"><p id="6f119593-34c9-828e-a11a-814dd56d164a" class="">Overwhelm-proof design</p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="2bf19593-34c9-82cb-8400-81bb7efafc01"/></div><div style="display:contents" dir="auto"><h4 id="8b519593-34c9-832e-9251-01424c68c4da" class="block-color-purple"><strong>Quick Start - Get Going in 5 Minutes!</strong></h4></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="ebf19593-34c9-8333-a025-81de0afb1efe"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/flag-checkered_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="65919593-34c9-82aa-9f39-01ab25d9eed9" class=""><strong>Ready to see the magic? Follow this checklist for instant wins!</strong></p></div></div></figure></div><div style="display:contents" dir="auto"><div id="f2919593-34c9-83be-9da7-011dfef00198" class="column-list"><div style="display:contents" dir="auto"><div id="d7819593-34c9-8355-972d-81eff7d9988a" style="width:100%" class="column"><div style="display:contents" dir="auto"><h3 id="9b819593-34c9-82ca-be45-013f46aaf4bb" class=""><strong>Step 1: Essential Setup</strong></h3></div><div style="display:contents" dir="auto"><ul id="8f419593-34c9-830c-a642-0172b96317fc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Switch metrics database to Gallery view</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="c4d19593-34c9-83bf-adb8-81ed68e97044" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Add your first Big 3 task for today</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="aa519593-34c9-8365-810d-81431c999106" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Log your current mood/energy</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="76319593-34c9-83d6-9e71-01c9c650ae73" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Celebrate your setup! 🎉</span><div class="indented"></div></li></ul></div></div></div><div style="display:contents" dir="auto"><div id="41519593-34c9-82c0-8e62-010c022642a9" style="width:100%" class="column"><div style="display:contents" dir="auto"><h3 id="6a219593-34c9-8393-bc5b-81167ef45f96" class=""><strong>Step 2: First Experience</strong></h3></div><div style="display:contents" dir="auto"><ul id="aed19593-34c9-82bb-a058-0186d063deda" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Try a 25-minute focus session</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="71f19593-34c9-8230-bb5f-814627d14f7e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Choose 1 simple habit to track</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="72c19593-34c9-82d5-bc59-01308f0ba9cd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use brain dump for any racing thoughts</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="22a19593-34c9-8392-a94f-01585cb4a723" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Watch your metrics update automatically!</span><div class="indented"></div></li></ul></div></div></div><div style="display:contents" dir="auto"><div id="a2019593-34c9-82d9-8ce7-0192b93d3749" style="width:100%" class="column"><div style="display:contents" dir="auto"><h3 id="cfb19593-34c9-82ce-996d-81e79fee4870" class=""><strong>Step 3: Make It Yours</strong></h3></div><div style="display:contents" dir="auto"><ul id="abf19593-34c9-82d7-9823-01583e78a43c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test on your mobile device</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="49f19593-34c9-831a-ba46-81599e3fdef7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Customize colors if desired</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="e2919593-34c9-839e-9129-819dcb751578" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Read the complete setup guide</span><div class="indented"></div></li></ul></div><div style="display:contents" dir="auto"><ul id="9c019593-34c9-8346-89bc-016e47e127bc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Start building your ADHD momentum!</span><div class="indented"></div></li></ul></div></div></div></div></div><div style="display:contents" dir="ltr"><figure class="block-color-purple callout" style="white-space:pre-wrap;display:flex" id="2be19593-34c9-820f-bb28-01935d50dabd"><div style="width:100%"><div style="display:contents" dir="auto"><div id="ad019593-34c9-8201-9782-81eb42af9941" class="column-list"><div style="display:contents" dir="auto"><div id="c4819593-34c9-82ee-a005-017a5312849b" style="width:50%" class="column"><div style="display:contents" dir="auto"><p id="83f19593-34c9-8276-b7c8-81a30a2652e6" class="">Designed for <strong>ADHD brains</strong>: low friction, visual cues, structure without rigidity</p></div><div style="display:contents" dir="auto"><p id="2cb19593-34c9-8216-a185-012274c50cbd" class=""><strong>Habits, tasks, calendar, goals, and money</strong> - fully connected in one dashboard<br/>• <strong>Update once</strong>; streaks, stats, totals, and heatmaps refresh automatically<br/>• Spend<strong> 5–10 minutes</strong> a day managing life, not chasing apps</p></div><div style="display:contents" dir="auto"><p id="54219593-34c9-83cc-9e1b-8150e4da9bb6" class="">• <strong>Clear daily focus</strong> instead of decision fatigue</p></div><div style="display:contents" dir="auto"><p id="6df19593-34c9-8367-91b9-01a38c2fedbb" class="">• Works with a <strong>free Notion account - no subscriptions, no lock-in</strong></p></div><div style="display:contents" dir="auto"><p id="5c219593-34c9-822c-b1f0-81f2b3fdc344" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="06219593-34c9-821c-aff9-81c592d30f31" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="f9f19593-34c9-8335-91de-01413d1808df"><div class="source"><a href="https://notomantra.github.io/widgets_v1/gumroad-widget-lifeos.html">https://notomantra.github.io/widgets_v1/gumroad-widget-lifeos.html</a></div></figure></div></div></div></div></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="7d219593-34c9-82ce-bc98-8193ad7c8a52"><div style="width:100%"><div style="display:contents" dir="auto"><div id="1f119593-34c9-83e6-9f1e-81a7921c6eae" class="column-list"><div style="display:contents" dir="auto"><div id="eef19593-34c9-82ea-afb4-81a1d95e4d9a" style="width:43.75%" class="column"><div style="display:contents" dir="auto"><p id="dbd19593-34c9-8328-9535-81daf399eaba" class=""><strong>Looking for a more organized system ? </strong></p></div><div style="display:contents" dir="auto"><p id="4ae19593-34c9-8392-8dae-01c90734fcd0" class=""><strong>Second Brain Pro</strong> is the whole life operating system: <strong>Goals, Habits, Finance, Relationships, Knowledge, Reviews, and Life Reference.</strong> </p></div><div style="display:contents" dir="auto"><p id="ac019593-34c9-82ce-a01d-012af69ed205" class="">Twelve pages and sixteen connected databases that <strong>PARA and GTD</strong> plug into<br/>One payment, lifetime access, no subscription. <br/>Built to hold up after week two, when most templates quietly die.</p></div></div></div><div style="display:contents" dir="auto"><div id="f1119593-34c9-82c3-aec5-81b1fde3dff2" style="width:56.25%" class="column"><div style="display:contents" dir="ltr"><figure id="ea219593-34c9-82c8-945f-01f631e44bdf"><div class="source"><a href="https://notomantra.github.io/gumcover/secondbrainpro.html">https://notomantra.github.io/gumcover/secondbrainpro.html</a></div></figure></div></div></div></div></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="8e419593-34c9-8253-98cc-81f57c7a4e5f"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/heart_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="c7819593-34c9-8270-bbd9-81a4f6cb4923" class=""><strong>Remember:</strong> This dashboard is your supportive partner, not your judge. Use what helps, adapt what doesn&#x27;t, and celebrate every step forward! 🌟 <em>Created with love by @NotoMantra for your perfect day 💕 Happy planning! ✨ </em></p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bb219593-34c9-82bc-8232-01f64677133c"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/chat-user_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="bc619593-34c9-82c3-b9e8-814c8707c94d" class=""><strong>Liked this template ? </strong>Please leave a quick review for us. Your support motivates us to create free templates like this 💕</p></div><div style="display:contents" dir="auto"><p id="5a519593-34c9-8265-b4de-81097a295f83" class="">👉 <a href="https://www.notion.so/marketplace?bp=true&amp;utm_source=chatgpt.com">Leave a review here</a> <em>(Click the three dots (…) → Leave a review for this template)</em></p></div></div></figure></div></div></figure></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,11 @@
+﻿Expense Name," Key Insights ✨ ",Amount,Due Date,Due if unpaid,Month-Year,Paid?,Status
+Groceries,,34,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Credit Card,,20,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Internet,,20,"August 7, 2025","August 7, 2025",Aug 2025,No,❌ Overdue
+Electricity,,10,"August 4, 2025","August 4, 2025",Aug 2025,No,❌ Overdue
+Food & Dining,,30,"August 3, 2025",,Aug 2025,Yes,✅ Paid
+Mobile Bill,,25,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Subscriptions,,44,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Others,,5,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Transport,,22,"August 3, 2025","August 3, 2025",Aug 2025,No,❌ Overdue
+Rent,,200,"August 3, 2025",,Aug 2025,Yes,✅ Paid

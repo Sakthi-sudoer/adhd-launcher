@@ -1,0 +1,744 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Calendar &amp; Upcoming Events</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="87e19593-34c9-83a6-82bd-81f8bbee897e" class="page serif"><header><img class="page-cover-image" src="Calendar%20&amp;%20Upcoming%20Events/1000045651.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Calendar%20&amp;%20Upcoming%20Events/ChatGPT_Image_Aug_10_2025_05_56_21_PM.png"/></div><h1 class="page-title" dir="auto">Calendar &amp; Upcoming Events</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="05d19593-34c9-8272-8974-01090ed3eb70"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/fireworks_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="7a119593-34c9-8363-9b95-01120759e662" class=""><strong>Never let ADHD time-blindness catch you off guard!</strong></p></div><div style="display:contents" dir="auto"><p id="79a19593-34c9-83f8-ada4-0197a8067b10" class=""><em>Your visual command center for all events, deadlines, and appointments. See time, don&#x27;t just think about it.</em></p></div><div style="display:contents" dir="auto"><p id="f9819593-34c9-820d-9963-01891fa31e63" class="">📆 <strong>Today:</strong> August 2, 2025 | 🎯 <strong>This Week:</strong> 8 events | ⏰ <strong>Next Event:</strong> 2:30 PM</p></div></div></figure></div><div style="display:contents" dir="auto"><hr id="2d519593-34c9-8249-b91c-8168166c50e6"/></div><div style="display:contents" dir="auto"><h3 id="c8f19593-34c9-82ef-8b53-01a7192648b2" class=""><mark class="highlight-purple"><strong>Your Time Dashboard (Update manually or use table below)</strong></mark></h3></div><div style="display:contents" dir="auto"><div id="47c19593-34c9-838d-afb0-01b158fb750e" class="column-list"><div style="display:contents" dir="auto"><div id="df219593-34c9-82f3-ad41-81dcfb538f49" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="9fd19593-34c9-83f8-8549-81dc3039e4f6"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/calendar_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="36319593-34c9-82a6-af49-018d2f94225a" class=""><strong>Today</strong></p></div><div style="display:contents" dir="auto"><h2 id="87519593-34c9-822a-8aa5-81bd2eda9b75" class="">3</h2></div><div style="display:contents" dir="auto"><p id="dbb19593-34c9-83c4-a44a-01792f1aa186" class=""><em>Events scheduled</em></p></div><div style="display:contents" dir="auto"><p id="7e319593-34c9-83e4-84c3-8151e908deca" class="">⏰ Next: 2:30 PM</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="c9119593-34c9-8344-a35b-01859659f729" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="3e919593-34c9-8264-b6fd-01f5843fcfe0"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/calendar_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="7dc19593-34c9-828c-ac51-01a0708d131b" class=""><strong>This Week</strong></p></div><div style="display:contents" dir="auto"><h2 id="11619593-34c9-83f4-932d-8169b3d0a4fe" class="">8</h2></div><div style="display:contents" dir="auto"><p id="c9d19593-34c9-82c1-b3b1-014bae09beca" class=""><em>Total events</em></p></div><div style="display:contents" dir="auto"><p id="f7119593-34c9-820b-8d6a-81071e551869" class="">💼 5 work, 3 personal</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="9e419593-34c9-8224-a500-011df91152af" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="57619593-34c9-8231-8e4e-01cb080d71b3"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/bullseye_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="70819593-34c9-82b9-9001-01ef717e4442" class=""><strong>Deadlines</strong></p></div><div style="display:contents" dir="auto"><h2 id="24e19593-34c9-82e0-a10c-816bbdf75e90" class="">2</h2></div><div style="display:contents" dir="auto"><p id="9b719593-34c9-827e-81fe-017a9ef46635" class=""><em>Coming up</em></p></div><div style="display:contents" dir="auto"><p id="ece19593-34c9-83a7-b7ab-01b1f0246662" class="">🚨 Friday &amp; Monday</p></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="6f119593-34c9-83ad-aad8-813187591d83" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="b5119593-34c9-83c3-9e99-010b2383e47b"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/gift_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="0f119593-34c9-8274-b041-0157667238a4" class=""><strong>Fun Events</strong></p></div><div style="display:contents" dir="auto"><h2 id="5ea19593-34c9-8373-911f-814891a85cb8" class="">1</h2></div><div style="display:contents" dir="auto"><p id="ace19593-34c9-821d-b397-816125068a78" class=""><em>This week</em></p></div><div style="display:contents" dir="auto"><p id="f2c19593-34c9-8360-b2ec-01ff1653129f" class="">🎂 Alexa&#x27;s B&#x27;day!</p></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="e6a19593-34c9-8271-bd94-818db3e20435"/></div><div style="display:contents" dir="ltr"><div id="abf19593-34c9-82fc-a573-81f60f4a363f" class="collection-content"><h4 class="collection-title">Calendar &amp; Events</h4><div class="collection-content-wrapper"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/circle-dot_gray.svg" style="width:14px;height:14px;display:block"/></span>Event Name</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>Date</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>Type</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Time</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/history_gray.svg" style="width:14px;height:14px;display:block"/></span>Is Upcoming?</th></tr></thead><tbody><tr id="3cc19593-34c9-83b3-ba88-81a042f8fd6e"><td class="cell-title"><a href="Calendar%20&amp;%20Upcoming%20Events/Calendar%20&amp;%20Events/Team%20standup%20meeting%203cc1959334c983b3ba8881a042f8fd6e.html">Team standup meeting</a></td><td class="cell-h\RQ"><time>August 3, 2025</time></td><td class="cell-IY`="><span class="selected-value select-value-color-blue">💼 Work</span></td><td class="cell-&lt;rF&lt;">10:00 AM</td><td class="cell-M?xt">✅ Done</td></tr><tr id="b2919593-34c9-834d-8b33-015c2459b260"><td class="cell-title"><a href="Calendar%20&amp;%20Upcoming%20Events/Calendar%20&amp;%20Events/Doctor%20appointment%20b291959334c9834d8b33015c2459b260.html">Doctor appointment</a></td><td class="cell-h\RQ"><time>October 24, 2025</time></td><td class="cell-IY`="><span class="selected-value select-value-color-pink">👩‍⚕️ Health</span></td><td class="cell-&lt;rF&lt;">2:00 PM</td><td class="cell-M?xt">✅ Done</td></tr><tr id="a8c19593-34c9-824b-9d38-01797a785826"><td class="cell-title"><a href="Calendar%20&amp;%20Upcoming%20Events/Calendar%20&amp;%20Events/Friend&#x27;s%20birthday%20party%20a8c1959334c9824b9d3801797a785826.html">Friend&#x27;s birthday party</a></td><td class="cell-h\RQ"><time>June 25, 2026</time></td><td class="cell-IY`="><span class="selected-value select-value-color-purple">🎉 Event</span></td><td class="cell-&lt;rF&lt;">7:00 PM</td><td class="cell-M?xt">Next 2 months</td></tr></tbody></table></div><br/><br/></div></div><div style="display:contents" dir="auto"><h3 id="8b819593-34c9-8226-9914-81a8d3f4895c" class="block-color-default_background"><mark class="highlight-purple"><strong>Today&#x27;s Timeline</strong></mark></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="05819593-34c9-8355-9e8d-0186dc096861"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/sun_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="4af19593-34c9-83bd-887e-018fb05d836e" class="">Saturday, August 2, 2025</h3></div><div style="display:contents" dir="auto"><p id="33519593-34c9-8252-a3de-0174b4d65c08" class=""><strong>Morning</strong></p></div><div style="display:contents" dir="auto"><p id="d1e19593-34c9-8380-a2ba-81f985d8d871" class="">✅ 9:00 AM - Morning routine</p></div><div style="display:contents" dir="auto"><p id="e9319593-34c9-82f2-a6e9-8122031d0f45" class="">✅ 10:00 AM - Grocery shopping</p></div><div style="display:contents" dir="auto"><p id="fbf19593-34c9-8392-98f0-81988ca80a3d" class=""><strong>Afternoon</strong></p></div><div style="display:contents" dir="auto"><p id="b7c19593-34c9-8399-bdd5-01e76c2d13f3" class="">⏳ 2:30 PM - Video call with team</p></div><div style="display:contents" dir="auto"><p id="6bb19593-34c9-8334-8fae-0185cf9b5e14" class="">⏳ 4:00 PM - Workout session</p></div><div style="display:contents" dir="auto"><p id="84419593-34c9-83f8-b17d-012d01d11a21" class=""><strong>Evening</strong></p></div><div style="display:contents" dir="auto"><p id="d0119593-34c9-83f3-83a6-8128f4cc4110" class="">🎉 7:00 PM - Alexa&#x27;s birthday party (reach venue by 7!)</p></div><div style="display:contents" dir="auto"><p id="ee719593-34c9-8371-b2f5-0124cff546aa" class=""><em>Color-coded: 💼 Work | 🏃 Personal | 🎉 Social | 🎯 Important</em></p></div></div></figure></div><div style="display:contents" dir="auto"><hr id="c8719593-34c9-83c8-a135-816edfba2e8c"/></div><div style="display:contents" dir="auto"><h3 id="aa619593-34c9-8300-8397-818ede6f23b3" class="block-color-purple"><strong>Week at a Glance</strong></h3></div><div style="display:contents" dir="auto"><div id="81f19593-34c9-8307-b315-8121d008a0ba" class="column-list"><div style="display:contents" dir="auto"><div id="b3119593-34c9-8214-9732-81e4d8cbb38b" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="ced19593-34c9-8393-a68a-019b4a0ad15a"><div style="font-size:1.5em"><span class="icon">1️⃣</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="e5719593-34c9-82c4-9858-01f3cf636c51" class=""><strong>Monday</strong></p></div><div style="display:contents" dir="auto"><ul id="4f519593-34c9-82d4-804c-011261349fd7" class="bulleted-list"><li style="list-style-type:disc">Team meet 10 AM</li></ul></div><div style="display:contents" dir="auto"><ul id="dc919593-34c9-8244-ac20-01fc05f9dff0" class="bulleted-list"><li style="list-style-type:disc">Project deadline</li></ul></div><div style="display:contents" dir="auto"><ul id="fc019593-34c9-82c2-8bc7-016ea64fd595" class="bulleted-list"><li style="list-style-type:disc">Gym 6 PM</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="d8019593-34c9-8328-956d-818a2804c11b" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="fd919593-34c9-8339-b2ec-0125f6d02264"><div style="font-size:1.5em"><span class="icon">2️⃣</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="b2919593-34c9-8239-a625-019f1dec20ce" class=""><strong>Tuesday</strong></p></div><div style="display:contents" dir="auto"><ul id="1c819593-34c9-8256-b22c-018ef0001eb9" class="bulleted-list"><li style="list-style-type:disc">Doctor apt 11 AM</li></ul></div><div style="display:contents" dir="auto"><ul id="c0d19593-34c9-82d2-8335-814c7c38704e" class="bulleted-list"><li style="list-style-type:disc">Lunch w/ Sarah</li></ul></div><div style="display:contents" dir="auto"><ul id="7bb19593-34c9-82ab-9ac7-819f572728a9" class="bulleted-list"><li style="list-style-type:disc">Evening free</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="d7a19593-34c9-83d2-b05f-012f245179d6" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="4dc19593-34c9-8208-9854-019707b19e2f"><div style="font-size:1.5em"><span class="icon">3️⃣</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="c8419593-34c9-8243-9784-810cb98af694" class=""><strong>Wednesday</strong></p></div><div style="display:contents" dir="auto"><ul id="0a919593-34c9-8202-a7fb-0140df715efb" class="bulleted-list"><li style="list-style-type:disc">Focus day</li></ul></div><div style="display:contents" dir="auto"><ul id="46619593-34c9-8355-9448-0100b1c1887d" class="bulleted-list"><li style="list-style-type:disc">No meetings!</li></ul></div><div style="display:contents" dir="auto"><ul id="66c19593-34c9-839f-8965-01746d629796" class="bulleted-list"><li style="list-style-type:disc">Yoga 7 PM</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="80119593-34c9-8236-9e06-81b6f662777c" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="4d819593-34c9-823d-ad77-01de35a6db1f"><div style="font-size:1.5em"><span class="icon">4️⃣</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="3b419593-34c9-83a1-8c64-0197c531b239" class=""><strong>Thursday</strong></p></div><div style="display:contents" dir="auto"><ul id="c6819593-34c9-83f2-8e78-0130a3c01178" class="bulleted-list"><li style="list-style-type:disc">Client meeting</li></ul></div><div style="display:contents" dir="auto"><ul id="08419593-34c9-82f0-aa42-01ff632bd7d6" class="bulleted-list"><li style="list-style-type:disc">Team lunch</li></ul></div><div style="display:contents" dir="auto"><ul id="45a19593-34c9-825a-950b-01107fbe459e" class="bulleted-list"><li style="list-style-type:disc">Movie night</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="59619593-34c9-834a-a7f9-81edc815f087" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="4fb19593-34c9-825e-9359-81c4c50eb2cd"><div style="font-size:1.5em"><span class="icon">5️⃣</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="f2819593-34c9-8243-b94d-016062076d7f" class=""><strong>Friday</strong></p></div><div style="display:contents" dir="auto"><ul id="22019593-34c9-83d5-80a4-81b9707cae09" class="bulleted-list"><li style="list-style-type:disc">Report deadline</li></ul></div><div style="display:contents" dir="auto"><ul id="84f19593-34c9-83cd-917d-0196e5cc955f" class="bulleted-list"><li style="list-style-type:disc">1:1 with boss</li></ul></div><div style="display:contents" dir="auto"><ul id="56e19593-34c9-837c-b443-010679a4eef5" class="bulleted-list"><li style="list-style-type:disc">Weekend starts!</li></ul></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><h3 id="9b919593-34c9-83d3-a861-81bc4230e642" class=""><mark class="highlight-purple"><strong>ADHD Time Management Tips</strong></mark></h3></div><div style="display:contents" dir="auto"><div id="b6419593-34c9-8339-b3d4-8107897b5c72" class="column-list"><div style="display:contents" dir="auto"><div id="b3219593-34c9-83d2-8f51-017fb1467ca8" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="12a19593-34c9-83a3-8bc3-014a4e4b5a1a"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/clock_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="d7419593-34c9-83b7-afd9-81c17388aad5" class=""><strong>Buffer Time</strong></h3></div><div style="display:contents" dir="auto"><ul id="0d219593-34c9-83aa-9061-815bf72cc35a" class="bulleted-list"><li style="list-style-type:disc">Add 15 min buffers</li></ul></div><div style="display:contents" dir="auto"><ul id="fdd19593-34c9-8225-9b1b-01c9b5a240d2" class="bulleted-list"><li style="list-style-type:disc">Account for transitions</li></ul></div><div style="display:contents" dir="auto"><ul id="fba19593-34c9-8265-90b1-81436d21106a" class="bulleted-list"><li style="list-style-type:disc">Prep time matters</li></ul></div><div style="display:contents" dir="auto"><ul id="5f219593-34c9-83ea-881a-81dc0b27250b" class="bulleted-list"><li style="list-style-type:disc">Never back-to-back</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="c1019593-34c9-8245-b9d2-01c1f2c91d0e" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="15719593-34c9-82b6-ac25-01ae5950ba78"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/bell-notification_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="7ab19593-34c9-8276-b462-813e203d0154" class=""><strong>Smart Reminders</strong></h3></div><div style="display:contents" dir="auto"><ul id="d1319593-34c9-824c-a38c-0199c0f24164" class="bulleted-list"><li style="list-style-type:disc">Multiple alerts</li></ul></div><div style="display:contents" dir="auto"><ul id="b0319593-34c9-83be-a075-817671131f20" class="bulleted-list"><li style="list-style-type:disc">Different times</li></ul></div><div style="display:contents" dir="auto"><ul id="d2719593-34c9-83fa-b3d3-81ee5b5a2eb5" class="bulleted-list"><li style="list-style-type:disc">Prep reminders</li></ul></div><div style="display:contents" dir="auto"><ul id="8a519593-34c9-82f8-a366-01187852d261" class="bulleted-list"><li style="list-style-type:disc">Location-based</li></ul></div></div></figure></div></div></div><div style="display:contents" dir="auto"><div id="51319593-34c9-8280-9c24-8105c976910f" style="width:100%" class="column"><div style="display:contents" dir="ltr"><figure class="block-color-purple_background callout" style="white-space:pre-wrap;display:flex" id="dc719593-34c9-8206-a7fd-01bbc0965119"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/color-palette_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="d5419593-34c9-82e9-8ce0-013a7c2787f3" class=""><strong>Visual Cues</strong></h3></div><div style="display:contents" dir="auto"><ul id="b2a19593-34c9-83c9-852c-818fba8bf4e9" class="bulleted-list"><li style="list-style-type:disc">Color coding</li></ul></div><div style="display:contents" dir="auto"><ul id="5d419593-34c9-82ba-9544-81494dc93501" class="bulleted-list"><li style="list-style-type:disc">Emoji categories</li></ul></div><div style="display:contents" dir="auto"><ul id="9ad19593-34c9-83b0-b277-017cc037c5b0" class="bulleted-list"><li style="list-style-type:disc">Time blocking</li></ul></div><div style="display:contents" dir="auto"><ul id="4bc19593-34c9-8366-b413-018c0dffc5d7" class="bulleted-list"><li style="list-style-type:disc">Weekly overview</li></ul></div></div></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="fe219593-34c9-8293-bd69-019557c171cf"/></div><div style="display:contents" dir="ltr"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="3fe19593-34c9-82cd-884a-011866ea1c0c"><div style="font-size:1.5em"><img class="icon notion-static-icon" src="https://www.notion.so/icons/heart_purple.svg"/></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="1c619593-34c9-8279-a2c4-817b0422e5e8" class="">Master Your Time, Master Your Life! </h3></div><div style="display:contents" dir="auto"><p id="7e119593-34c9-82a7-b7f5-01011691382e" class=""><em>Time blindness is real, but this calendar is your superpower. By making time visual and adding multiple reminders, you&#x27;re setting yourself up for success. Every event you track is a step toward better time management!</em></p></div><div style="display:contents" dir="auto"><p id="2b319593-34c9-836f-8df2-8149194f1d22" class=""><strong>You&#x27;ve got this - one event at a time!</strong> ✨</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="4ab19593-34c9-82a2-87b8-013677c78da8" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
